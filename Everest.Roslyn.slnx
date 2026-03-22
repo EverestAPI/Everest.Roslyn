@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ModLifecycleAttributes/ModLifecycleAttributes.Sample/ModLifecycleAttributes.Sample.csproj" />
+  <Project Path="ModLifecycleAttributes/ModLifecycleAttributes.Tests/ModLifecycleAttributes.Tests.csproj" />
+  <Project Path="ModLifecycleAttributes/ModLifecycleAttributes/ModLifecycleAttributes.csproj" />
+</Solution>
