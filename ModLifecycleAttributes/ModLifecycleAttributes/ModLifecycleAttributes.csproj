@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>false</IsPackable>
+        <IsPackable>true</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>13</LangVersion>
 
@@ -10,7 +10,6 @@
         <IsRoslynComponent>true</IsRoslynComponent>
 
         <RootNamespace>Celeste.Mod.Roslyn.ModLifecycleAttributes</RootNamespace>
-        <PackageId>ModLifecycleAttributes</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,10 +22,63 @@
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.0"/>
     </ItemGroup>
 
+    <!--
+        NuGet packages are just zip files, so it's a good idea to open them
+        to double check we don't include any unnecessary bloat.
+        Remember to put Pack="false" to exclude stuff from the NuGet package!
+    -->
     <ItemGroup>
-      <Content Include="..\README.md">
-        <Link>README.md</Link>
-      </Content>
+        <None Include="../CHANGELOG.md" Pack="false">
+            <Link>CHANGELOG.md</Link>
+        </None>
+    </ItemGroup>
+
+    <!--
+        NuGet package stuff
+        https://learn.microsoft.com/en-us/nuget/create-packages/package-authoring-best-practices
+    -->
+    <PropertyGroup>
+        <PackageId>CelesteMod.Roslyn.ModLifecycleAttributes</PackageId>
+        <Authors>EverestAPI,SnipUndercover</Authors>
+        <Copyright>Copyright (c) 2026 EverestAPI</Copyright>
+
+        <Version>1.0.0</Version>
+        <Title>Everest - Mod Lifecycle Attributes</Title>
+        <Product>$(Title)</Product>
+        <PackageDescription>
+            Source generator for Celeste mods, adding attributes for usage in user-defined methods to mark them to
+            be called on their EverestModule.Load/Initialize/LoadContent/Unload.
+        </PackageDescription>
+        <PackageTags>Celeste,Celeste mod,Everest,Everest mod,source generator,sourcegen,roslyn,mod,modding</PackageTags>
+
+        <RepositoryUrl>https://github.com/SnipUndercover/Everest.Roslyn/tree/main/ModLifecycleAttributes</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <PackageReleaseNotes>https://github.com/SnipUndercover/Everest.Roslyn/blob/main/ModLifecycleAttributes/README.md</PackageReleaseNotes>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageIcon>icon.png</PackageIcon>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <!-- Build a NuGet package on a Release build -->
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <!-- Don't include build output, as we're not a library -->
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <!-- We don't include dependencies, so suppress the warning -->
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+        <!-- We're a development-time dependency only, don't make ourselves a transitive dependency -->
+        <DevelopmentDependency>true</DevelopmentDependency>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(Configuration)' == 'Release'">
+        <!-- Package the generator in the analyzer directory of the nuget package if building in Release -->
+        <None Include="$(OutputPath)/$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+        <!-- Add a README and license -->
+        <None Include="../README.md" Pack="true" PackagePath="/"/>
+        <None Include="../LICENSE.txt" Pack="true" PackagePath="/"/>
+        <!-- Add the icon -->
+        <None Include="../../icon.png" Pack="true" PackagePath="/"/>
     </ItemGroup>
 
 </Project>
