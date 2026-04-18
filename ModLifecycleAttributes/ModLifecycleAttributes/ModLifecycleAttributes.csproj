@@ -53,7 +53,7 @@
         <RepositoryUrl>https://github.com/EverestAPI/Everest.Roslyn/tree/main/ModLifecycleAttributes</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
 
-        <PackageReleaseNotes>https://github.com/EverestAPI/Everest.Roslyn/blob/main/ModLifecycleAttributes/README.md</PackageReleaseNotes>
+        <PackageReleaseNotes>https://github.com/EverestAPI/Everest.Roslyn/blob/main/ModLifecycleAttributes/CHANGELOG.md</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
