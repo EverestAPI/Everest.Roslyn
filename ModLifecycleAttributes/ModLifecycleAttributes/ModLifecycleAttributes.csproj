@@ -44,10 +44,7 @@
         <Version>1.0.0</Version>
         <Title>Everest - Mod Lifecycle Attributes</Title>
         <Product>$(Title)</Product>
-        <PackageDescription>
-            Source generator for Celeste mods, adding attributes for usage in user-defined methods to mark them to
-            be called on their EverestModule.Load/Initialize/LoadContent/Unload.
-        </PackageDescription>
+        <PackageDescription>Source generator for Celeste mods, adding attributes for usage in user-defined methods to mark them to be called on their EverestModule.Load/Initialize/LoadContent/Unload.</PackageDescription>
         <PackageTags>Celeste,Celeste mod,Everest,Everest mod,source generator,sourcegen,roslyn,mod,modding</PackageTags>
 
         <RepositoryUrl>https://github.com/EverestAPI/Everest.Roslyn/tree/main/ModLifecycleAttributes</RepositoryUrl>
